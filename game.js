@@ -1,4 +1,4 @@
-import {updateBird, setupBird} from './bird.js';
+import {updateBird, setupBird, getBirdRect} from './bird.js';
 
 document.addEventListener('keypress', handleStart, {once: true})
 const title = document.querySelector('[data-title]');
@@ -10,9 +10,16 @@ function mainGame(time){
     if(prevTime !== null){
         deltaTime = time - prevTime;
     }
-    prevTime = time;
     updateBird(deltaTime);
+    if(checkLose()) return handleLose();
+    prevTime = time;
     window.requestAnimationFrame(mainGame);
+}
+
+function checkLose(){
+    const birdRect = getBirdRect();
+    const outsideWorld = birdRect.top < 0 || birdRect.bottom > window.innerHeight;
+    return outsideWorld;
 }
 
 // handle start
