@@ -20,7 +20,7 @@ export function updateBird(delta){
 }
 
 export function getBirdRect(){
-    return birdElem.getBoundingClientRect();
+    return birdElem.getBoundingClientRect(); // gets all the dom positions of the element
 }
 
 // helper functions 
